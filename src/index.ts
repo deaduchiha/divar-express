@@ -1,10 +1,10 @@
 import express from "express";
 import dotenv from "dotenv";
+import swaggerUi from "swagger-ui-express";
 import { connectDB } from "./config/mongoose.config";
 import { swaggerConfig } from "./config/swagger.config";
-import swaggerUi from "swagger-ui-express";
 
-dotenv.config();
+dotenv.config(); // load environment variables from .env file
 
 const app = express();
 app.use(express.json());
