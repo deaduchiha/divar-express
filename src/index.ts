@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import { connectDB } from "./config/mongoose.config";
 
 dotenv.config();
 
@@ -27,6 +28,7 @@ app.use(
 );
 
 const port = Number(process.env.PORT ?? 8000);
-app.listen(port, () => {
+app.listen(port, async () => {
+  await connectDB();
   console.log(`🚀 Server listening on http://localhost:${port}`);
 });
