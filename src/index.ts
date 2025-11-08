@@ -1,6 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
 import { connectDB } from "./config/mongoose.config";
+import { swaggerConfig } from "./config/swagger.config";
+import swaggerUi from "swagger-ui-express";
 
 dotenv.config();
 
@@ -28,7 +30,10 @@ app.use(
 );
 
 const port = Number(process.env.PORT ?? 8000);
+
+app.use("/docs", swaggerUi.serve, swaggerConfig);
+
 app.listen(port, async () => {
-  await connectDB();
+  await connectDB(); // connect to database
   console.log(`🚀 Server listening on http://localhost:${port}`);
 });
